@@ -62,7 +62,7 @@ index.use(express.urlencoded({ extended: false}));
 index.use(cookieParser());
 // Code that tells the client browser that the public folder is static so that it can be rendered on the client end - Remember that the public being joined to the 
 // url (our 'app/') only indicates that statically the public folder is to be used, you have to direct in 'href=' for stylesheets and content as '/'+ public + rest of folder hierarchy....
-index.use(express.static(path.join(__dirname, '../public')));
+index.use(express.static(path.join(__dirname, './public')));
 // **********************************************************
 index.use(session({           
     secret: Secret,
