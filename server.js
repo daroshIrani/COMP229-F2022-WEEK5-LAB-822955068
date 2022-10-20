@@ -9,12 +9,12 @@ import debug from 'debug';
 debug('comp-229');
 import http from 'http';
 
-import index from './app/index.js';
+import app from './app/index.js';
 
 const PORT = normalizePort(process.env.PORT || 3000);
-index.set('port', PORT);
+app.set('port', PORT);
 
-const server = http.createServer(index);
+const server = http.createServer(app);
 
 server.listen(PORT);
 server.on('error', onError);
@@ -63,4 +63,3 @@ function onListening()
   let bind = 'pipe ' + addr;
   debug('Listening on ' + bind);
 }
-

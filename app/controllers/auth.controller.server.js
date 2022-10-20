@@ -1,4 +1,4 @@
-import { Express } from "express";
+import  express  from "express";
 
 // need passprt as well
 import passport from 'passport';
