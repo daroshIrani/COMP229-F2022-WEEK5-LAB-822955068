@@ -11,16 +11,16 @@ import { UserDisplayName } from "../Utils/indexUtils.js"
 
 //Display functions
 export function DisplayLoginPage(req,res,next){
-    if (!req.user){                                                                                         // Since we imported UserDisplayName from indexUtils, we check if the user exists 
-        return res.render ('index', {title:'Login' , page: 'login', messages: req.flash('loginMessage')})   //  If user does not exist we render the index  template and login page with a variable messages which flashes loginMessage 
-    }
+    if (!req.user){                                                                                                     // Since we imported UserDisplayName from indexUtils, we check if the user exists 
+        return res.render ('index', {title:'Login' , page: 'login', messages: req.flash('loginMessage'), displayName: UserDisplayName(req)})   //  If user does not exist we render the index  template and login page with a variable messages which flashes loginMessage 
+    }                                                                                                                    // Variables like displaName can be added so that the page gets and uses them
 
     return res.redirect('/movie-list');
 }
 
 export function DisplayRegisterpage(req,res,next){
     if (!req.user){                                                                                                 // Since we imported UserDisplayName from indexUtils, we check if the user exists 
-        return res.render ('index', {title:'Register' , page: 'register', messages: req.flash('registerMessage')})     //  If user does not exist we render the index  template and registerpage with a variable messages which flashes loginMessage 
+        return res.render ('index', {title:'Register' , page: 'register', messages: req.flash('registerMessage'), displayName: UserDisplayName(req)})     //  If user does not exist we render the index  template and registerpage with a variable messages which flashes loginMessage 
     }
 
     return res.redirect('/movie-list');

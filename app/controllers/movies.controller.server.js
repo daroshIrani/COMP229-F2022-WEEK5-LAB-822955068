@@ -3,6 +3,9 @@
 import movieModel from '../models/movies.js'; // because the export is 'default' under the movies.js under models folder, we can name any name for the import statement - in this case
                                               // it is called movieModel
 
+// Week 5 AUthenticating user
+// Importing displayName function so it can use the user.displayName from index.utils to authenticate the user (Everywhere there is a header used we authenticate the viewing of the page after user is authenticated - they wouldve been authorized through login )
+import { UserDisplayName } from '../Utils/indexUtils.js';
 
 export function DisplayMoviesList(req,res,next){                                                 // We check if we have a list of things or an error - the function .find asks if 
 movieModel.find(function(err, moviesCollection){                                            // the function has an error what to do and if it is successfull what to do
@@ -11,7 +14,7 @@ movieModel.find(function(err, moviesCollection){                                
         console.error(err);
         res.end(err)
     }
-    res.render('index', {title:'Movie List', page:'movies/list', movies:moviesCollection} ); // if there is no error render the index page using the same header and footer as index,
+    res.render('index', {title:'Movie List', page:'movies/list', movies:moviesCollection , displayName: UserDisplayName(req)} ); // if there is no error render the index page using the same header and footer as index,
                                                                                             // but, page we render is under content/movies/list - title is given as will be filled in
                                                                                             // the index.ejs page and the page it will be directed to is movies/list (follows 
                                                                                             // same pattern as index.controller.server.js) - only difference is that one more variable
@@ -21,7 +24,7 @@ movieModel.find(function(err, moviesCollection){                                
 }
 
 export function DisplayMoviesAddPage (req,res, next){
-    res.render('index', {title: 'Add Movie', page : 'movies/edit', movie:{}});
+    res.render('index', {title: 'Add Movie', page : 'movies/edit', movie:{} , displayName: UserDisplayName(req) });
 }
 
 
@@ -59,7 +62,7 @@ export function DisplayMoviesEditPage (req,res, next){
         res.end(err)                                    // response ends with err
         };
         
-        res.render('index', {title: 'Edit Movie', page : 'movies/edit', movie:movie});
+        res.render('index', {title: 'Edit Movie', page : 'movies/edit', movie:movie , displayName: UserDisplayName(req)});
     })
 
 }

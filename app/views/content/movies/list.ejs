@@ -2,8 +2,14 @@
 
 <div class="container">
     <h1>Movie List</h1>
+
+    <!-- Added in Week 5 - If the userName is available display the buttons to edit and delete and Add-->
+    <% if(displayName) { %>
     <a href="/movie-add" class="btn btn-primary" role="button">
         <i class="fas fa-plus-circle"></i> Add a Movie</a>
+    <% } %>
+
+    
     <div class="row">
         <div class="col">
     
@@ -31,6 +37,9 @@
                             <td><%= movies[count].genre %></td>
                             <td><%= movies[count].runtime %></td>
                             
+                            <!-- Added in Week 5 - If the userName is available display the buttons to edit and delete-->
+                            <% if(displayName) { %>
+
                             <td class="text-center col-1">
                                 <a href="/movie-edit/<%= movies[count]._id %>"        
                                     class="btn btn-primary btn-sm">
@@ -42,6 +51,10 @@
                                     class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash-alt"></i> Delete</a>         <!-- these buttons are not added until the row is populated-->
                             </td>
+                            
+                            <!-- Added in week 5 - end of if statement from above-->
+                            <% } %> 
+
                         </tr>
                     <% } %>                                                             <!--For loop ends here **************************************************-->
                 </tbody>

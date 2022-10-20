@@ -9,15 +9,18 @@ import { DisplayMoviesList,
     ProcessMoviesEditPage, 
     ProcessMoviesDelete} from "../controllers/movies.controller.server.js"; // importing the movie list function from respective file
 
+// Week 5 AUthguard added
+import { AuthGuard } from "../Utils/indexUtils.js";    
+
 const router = Router();
 
-router.get('/movie-list', DisplayMoviesList);
-router.get('/movie-add', DisplayMoviesAddPage);
-router.post('/movie-add', ProcessMoviesAddPage);
-router.post('/movie-edit/:id', ProcessMoviesEditPage);
-router.get('/movie-edit/:id', DisplayMoviesEditPage); /// Remember, when you lok at the routes, 'get' means when this url '/movie-edit/:id ( id which is provided from the DisplayMoviesEditPage on movies.controller.. ) is called, specific function is run 
-                                                      // id in this case is provided by what is collected by the controller 
-router.get('/movie-delete/:id', ProcessMoviesDelete)
+router.get('/movie-list', DisplayMoviesList); 
+router.get('/movie-add', AuthGuard, DisplayMoviesAddPage);      // call authguard or call next which is DisplayMoviesAddPage (Authguard is defined in utils)
+router.post('/movie-add', AuthGuard, ProcessMoviesAddPage);
+router.post('/movie-edit/:id', AuthGuard, ProcessMoviesEditPage);
+router.get('/movie-edit/:id', AuthGuard, DisplayMoviesEditPage); /// Remember, when you lok at the routes, 'get' means when this url '/movie-edit/:id ( id which is provided from the DisplayMoviesEditPage on movies.controller.. ) is called, specific function is run 
+                                                                    // id in this case is provided by what is collected by the controller 
+router.get('/movie-delete/:id', AuthGuard, ProcessMoviesDelete)
 
 export default router; 
 

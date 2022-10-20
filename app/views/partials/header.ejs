@@ -44,15 +44,38 @@
                                                                                                                     is = contact then make it the active page(url has index/home),
                                                                                                                      if not make it blank and load index page-->
           </li>
-          
-          <!-- Added in Week 4 -->
+          <!-- Week 5 - Movie list is always avialable but we cant edit it (Mobved up here from below to allow functionality of display only to all user)-->
           <li class="nav-item">
             <a class="nav-link <%=(page == 'movie-list') ? 'active' : ''; %>" aria-current="page" href="/movie-list"><i class="fa-solid fa-table-list"></i> Movies List</a> <!--TheEJS include statement goes inside the class. It means
                                                                                                                     if the page (variable defined in index.controller.server.js)
                                                                                                                     is = contact then make it the active page(url has index/home),
                                                                                                                      if not make it blank and load index page-->
           </li>
+
+          <!-- Added for Week 5-->
+          <% if(displayName) { %> <!-- If display name is available - I am authorized, i can see the movie list-->
           
+          <!-- Added in Week 4 -->
+          <!-- <li class="nav-item"> -->
+          <!--  <a class="nav-link <%=(page == 'movie-list') ? 'active' : ''; %>" aria-current="page" href="/movie-list"><i class="fa-solid fa-table-list"></i> Movies List</a> --> <!--TheEJS include statement goes inside the class. It means
+                                                                                                                    if the page (variable defined in index.controller.server.js)
+                                                                                                                    is = contact then make it the active page(url has index/home),
+                                                                                                                     if not make it blank and load index page-->
+          <!-- </li> -->
+
+          <!-- Week 5 Display of logout button -->
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/logout"><i class="fa-solid fa-right-from-bracket fa-lg"></i> Logout</a>
+          </li>
+
+          <% } else { %>
+          <!-- Added for Week 5 - Display of login button-->
+          <li class="nav-item">
+            <a class="nav-link <%= (page == 'login') ? 'active' : ''; %>" aria-current="page" href="/login"><i class="fa-solid fa-right-to-bracket fa-lg"></i> Login</a>
+          </li>
+
+          <% } %>
+
         </ul>
       </div>
     </div>
