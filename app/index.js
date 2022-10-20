@@ -106,6 +106,7 @@ index.use('/', indexRouter);
 // Wiring up movies router
 index.use('/', movieRouter);
 
+// Week 5 added here
 index.use('/', authRouter);
 
 export default index;
